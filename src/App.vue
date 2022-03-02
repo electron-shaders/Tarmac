@@ -21,31 +21,23 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
+  import { ref, onMounted, onBeforeUnmount } from 'vue';
   import HelloWorld from "./components/HelloWorld.vue";
 
-  export default {
-    name: "App",
-    data() {
-      return {
-        cursorStyle: "transform: none",
-        cursorFoStyle: "transform: none",
-      };
-    },
-    methods: {
-      mouseMove(e) {
-        this.cursorStyle = `transform: translate3d(${e.clientX}px, ${e.clientY}px, 150px)`;
-        this.cursorFoStyle = `transform: translate3d(${e.clientX}px, ${e.clientY}px, 40px)`;
-      },
-    },
-    mounted() {
-      document.addEventListener(`mousemove`, this.mouseMove);
-    },
-    beforeUnmount() {
-      document.removeEventListener(`mousemove`, this.mouseMove);
-    },
-    components: {
-      HelloWorld,
-    },
-  };
+  const cursorStyle = ref("transform: none");
+  const cursorFoStyle = ref("transform: none");
+
+  function mouseMove(e: { clientX: Number; clientY: Number; }) {
+    cursorStyle.value = `transform: translate3d(${e.clientX}px, ${e.clientY}px, 150px)`;
+    cursorFoStyle.value = `transform: translate3d(${e.clientX}px, ${e.clientY}px, 40px)`;
+  }
+
+  onMounted(() => {
+    document.addEventListener(`mousemove`, mouseMove);
+  })
+
+  onBeforeUnmount(() => {
+    document.removeEventListener(`mousemove`, mouseMove);
+  })
 </script>
