@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@octokit/core": "^3.5.1",
+    "midi.js": "^0.3.1",
     "pixi.js": "^6.2.2",
     "vue": "^3.2.25",
     "vue-router": "^4.0.13",
