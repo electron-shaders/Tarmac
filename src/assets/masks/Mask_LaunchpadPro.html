@@ -1,0 +1,333 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>Vite App</title>
+    <style type="text/css">
+.container {
+    /* background-color: #2e2e2e; */
+    cursor: default !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.cursor-box__common {
+    display: none !important;
+    cursor: default;
+}
+.stage {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 18px;
+    /* border: 25px solid #000000; */
+    background-color: #000000;
+    padding: 25px;
+}
+.stage .mask {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+}
+</style><style type="text/css">
+.container {
+  width: 100vw;
+  height: 100vh;
+  cursor: none;
+}
+.cursor-box__common {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+}
+.cursor-box {
+  z-index: 9999;
+  -webkit-transform: translateZ(150px);
+  transform: translateZ(150px);
+  pointer-events: none;
+}
+.cursor {
+  width: 10px;
+  height: 10px;
+  -webkit-transform: translate3D(-50%, -50%, 1px);
+  transform: translate3D(-50%, -50%, 1px);
+  border-radius: 50%;
+  background: #000000;
+  color: #000000;
+}
+.cursor__follower-box {
+  z-index: 2001;
+  -webkit-transform: translateZ(45px);
+  transform: translateZ(45px);
+  transition: transform 0.5s cubic-bezier(0.04, 0.96, 0.32, 1), -webkit-transform 0.5s cubic-bezier(0.04, 0.96, 0.32, 1);
+  pointer-events: none;
+}
+.cursor__follower {
+  width: 36px;
+  height: 36px;
+  -webkit-transform: translate3D(-50%, -50%, 1px);
+  transform: translate3D(-50%, -50%, 1px);
+  border-radius: 50%;
+  border: 2px solid #000000;
+}
+.row {
+  display: flex;
+}
+.gutter-x {
+  height: 12px;
+  width: 100%;
+  z-index: 100;
+  background-color: #000000;
+}
+.gutter-y {
+  width: 12px;
+  height: 72px;
+  z-index: 100;
+  background-color: #000000;
+}
+.button-container {
+  border-radius: 50%;
+  margin: 9px;
+  width: 54px;
+  height: 54px;
+  position: relative;
+  /* background-color: #68687f; 偏白 */
+  background-color: #ffffff;
+}
+.button__cover {
+  z-index: 100;
+  border-radius: 50%;
+  width: 84%;
+  height: 84%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #050901;
+}
+.light-container {
+  border-radius: 8px;
+  width: 72px;
+  height: 72px;
+  position: relative;
+  /* background-color: #68687f; 偏白 */
+  background-color: #ffffff;
+}
+.light__cover {
+  z-index: 100;
+  border-radius: 8px;
+  width: 90%;
+  height: 90%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #050901;
+}
+.light {
+  z-index: 20;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+.light--top {
+  z-index: 25;
+}
+.light--bottom {
+  z-index: 20;
+}
+.light__color--top-1 {
+  /* 35 */
+  width: 3%;
+  height: 3%;
+  background-color: #1fffd5;
+  box-shadow: 0 0 2px 2px #1fffd5, 0 0 6px 8px #1fffd5;
+}
+.light__color--top-2 {
+  /* 50 */
+  /* 偏模糊 */
+  width: 5%;
+  height: 5%;
+  background-color: #a299ee;
+  box-shadow: 0 0 1.92px 1.92px #a299ee, 0 0 9.6px 11.52px #a299ee;
+}
+.light__color--top-2s {
+  /* 49 */
+  /* 偏锐利 */
+  /* width: 8%;
+  height: 8%;
+  background-color: #f999ee;
+  box-shadow:
+    0 0 4.77px 6.72px #f999ee,
+    0 0 9.6px 11.52px #f999ee; */
+}
+.light__color--top-3b {
+  /* 41 */
+  /* 偏模糊 */
+  /* width: 10%;
+  height: 10%;
+  background-color: #4bf9d9;
+  box-shadow:
+    0 0 9.6px 11.52px #4bf9d9; */
+}
+.light__color--top-3 {
+  /* 41 */
+  /* 偏锐利 */
+  width: 25%;
+  height: 25%;
+  background-color: #4cf9d9;
+  box-shadow: 0 0 5.76px 7.68px #4cf9d9;
+}
+.light__color--top-4 {
+  /* 37 */
+  width: 25%;
+  height: 25%;
+  background-color: #4affff;
+  box-shadow: 0 0 13.44px 13.44px #4affff, 0 0 13.44px 13.44px #4affff;
+}
+.light__color--bottom-1 {
+  /* 35 */
+  width: 10%;
+  height: 10%;
+  background-color: #22ddb7;
+  box-shadow: 0 0 9.6px 9.6px #22ddb7, 0 0 16.32px 16.32px #22ddb7, 0 0 24.96px 24.96px #22ddb7;
+}
+.light__color--bottom-2 {
+  /* 50 */
+  width: 35%;
+  height: 35%;
+  background-color: #663cc0;
+  box-shadow: 0 0 16.32px 16.32px #663cc0, 0 0 18.24px 18.24px #663cc0;
+}
+.light__color--bottom-3 {
+  /* 41 */
+  width: 35%;
+  height: 35%;
+  background-color: #2799ea;
+  box-shadow: 0 0 19.17px 19.17px #2799ea, 0 0 23.12px 23.12px #2799ea;
+}
+.light__color--bottom-4 {
+  /* 37 */
+  width: 80%;
+  height: 80%;
+  background-color: #18cff0;
+  box-shadow: 0 0 10.56px 15.36px #18cff0;
+}
+.light__1 {
+  width: 20%;
+  height: 20%;
+  background-color: #ffffff;
+  box-shadow: 0 0 7.7px 7.7px #ffffff, 0 0 17.28px 17.28px #ffffff;
+}
+.light__2 {
+  width: 25%;
+  height: 25%;
+  background-color: #ffffff;
+  box-shadow: 0 0 14.4px 14.4px #ffffff, 0 0 18.24px 18.24px #ffffff;
+}
+.light__3 {
+  width: 25%;
+  height: 25%;
+  background-color: #ffffff;
+  box-shadow: 0 0 14.4px 14.4px #ffffff, 0 0 23.04px 23.04px #ffffff;
+}
+.light--button {
+  width: 100%;
+  height: 100%;
+}
+.light--button-0 {
+  background-color: #ffffff;
+}
+.light--button-1 {
+  background-color: #1fffd5;
+}
+.light--button-2 {
+  background-color: #663cc0;
+}
+.light--button-3 {
+  background-color: #2799ea;
+}
+.light--button-4 {
+  background-color: #18cff0;
+}
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}</style><style type="text/css">#_copy{align-items:center;background:#4494D5;border-radius:3px;color:#fff;cursor:pointer;display:flex;font-size:13px;height:30px;justify-content:center;position:absolute;width:60px;z-index:1000}#select-tooltip,#sfModal,.modal-backdrop,div[id^=reader-helper]{display:none!important}.modal-open{overflow:auto!important}._sf_adjust_body{padding-right:0!important}</style></head>
+  <body style="margin: 0" _c_t_j1="1">
+    <div id="app" data-v-app=""><div class="container"><div class="container" id="container"><div class="stage" id="stage"><div style="display: flex; flex-direction: column; justify-content: center; align-items: center;"><div class="row"><div style="display: flex;"><div style="width: 72px; height: 72px;"></div><div class="gutter-y" style="width: 20px;"></div></div><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><div class="gutter-y" style="width: 20px;"></div></div><div style="display: flex;"><div style="width: 72px; height: 72px;"></div><!--v-if--></div></div><div class="gutter-x" style="height: 20px;"></div></div><div style="display: flex; flex-direction: column; justify-content: center; align-items: center;"><div class="row"><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><div class="gutter-y" style="width: 20px;"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y" style="width: 20px;"></div></div><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><!--v-if--></div></div><div class="gutter-x"></div></div><div style="display: flex; flex-direction: column; justify-content: center; align-items: center;"><div class="row"><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><div class="gutter-y" style="width: 20px;"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y" style="width: 20px;"></div></div><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><!--v-if--></div></div><div class="gutter-x"></div></div><div style="display: flex; flex-direction: column; justify-content: center; align-items: center;"><div class="row"><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><div class="gutter-y" style="width: 20px;"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y" style="width: 20px;"></div></div><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><!--v-if--></div></div><div class="gutter-x"></div></div><div style="display: flex; flex-direction: column; justify-content: center; align-items: center;"><div class="row"><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><div class="gutter-y" style="width: 20px;"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y" style="width: 20px;"></div></div><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><!--v-if--></div></div><div class="gutter-x"></div></div><div style="display: flex; flex-direction: column; justify-content: center; align-items: center;"><div class="row"><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><div class="gutter-y" style="width: 20px;"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y" style="width: 20px;"></div></div><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><!--v-if--></div></div><div class="gutter-x"></div></div><div style="display: flex; flex-direction: column; justify-content: center; align-items: center;"><div class="row"><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><div class="gutter-y" style="width: 20px;"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y" style="width: 20px;"></div></div><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><!--v-if--></div></div><div class="gutter-x"></div></div><div style="display: flex; flex-direction: column; justify-content: center; align-items: center;"><div class="row"><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><div class="gutter-y" style="width: 20px;"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y" style="width: 20px;"></div></div><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><!--v-if--></div></div><div class="gutter-x"></div></div><div style="display: flex; flex-direction: column; justify-content: center; align-items: center;"><div class="row"><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><div class="gutter-y" style="width: 20px;"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="light-container"><div class="light__cover"></div><!-- <div class="light light--top light__color--top-4"></div>
+              <div class="light light--bottom light__color--bottom-4"></div> --></div><div class="gutter-y" style="width: 20px;"></div></div><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><!--v-if--></div></div><div class="gutter-x" style="height: 20px;"></div></div><div style="display: flex; flex-direction: column; justify-content: center; align-items: center;"><div class="row"><div style="display: flex;"><div style="width: 72px; height: 72px;"></div><div class="gutter-y" style="width: 20px;"></div></div><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><div class="gutter-y"></div></div><div style="display: flex;"><div class="button-container"><div class="button__cover"></div><!-- <div class="light light--button light--button-4"></div> --></div><div class="gutter-y" style="width: 20px;"></div></div><div style="display: flex;"><div style="width: 72px; height: 72px;"></div><!--v-if--></div></div><!--v-if--></div></div></div><div class="cursor-box__common cursor-box" style="transform: translate3d(1139px, 92px, 150px);"><div class="cursor"></div></div><div class="cursor-box__common cursor__follower-box" style="transform: translate3d(1139px, 92px, 40px);"><div class="cursor__follower"></div></div></div></div>
+</body></html>

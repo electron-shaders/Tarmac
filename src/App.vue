@@ -10,8 +10,7 @@
 
 <template>
   <div class="container">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+    <Stage></Stage>
     <div class="cursor-box__common cursor-box" :style="cursorStyle">
       <div class="cursor" />
     </div>
@@ -23,7 +22,7 @@
 
 <script setup lang="ts">
   import { ref, onMounted, onBeforeUnmount } from 'vue';
-  import HelloWorld from "./components/HelloWorld.vue";
+  import Stage from "./components/stage.vue";
 
   const cursorStyle = ref("transform: none");
   const cursorFoStyle = ref("transform: none");
